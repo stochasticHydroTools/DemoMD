@@ -119,7 +119,7 @@ def RunTest():
     N = 125 # number of atoms = 5^3
     L = (N / rho)**(1./3.) # periodic box size
     
-    print "packing density = %11.4f" % (N*(4/3*3.14159)/L**3)
+    print("packing density = %11.4f" % (N*(4/3*3.14159)/L**3))
  
     #set the max number of md steps; 0 for infinite loop
     MaxSteps = 10000
@@ -182,9 +182,9 @@ def RunTest():
                
         #check if we need to update the display            
         if i % WriteStatsSteps == 0:   
-            print "%11.4f  %11.4f  %11.4f  %11.4f" % (i*dt, PEnergy + KEnergy, PEnergy, KEnergy)
+            print("t,E,Ep,Ek = %11.4f  %11.4f  %11.4f  %11.4f" % (i*dt, PEnergy + KEnergy, PEnergy, KEnergy))
             with open("log.dat",'a') as f: 
-               f.write("%11.4f  %11.4f  %11.4f  %11.4f\n" % (i*dt, PEnergy + KEnergy, PEnergy, KEnergy))
+               print("%11.4f  %11.4f  %11.4f  %11.4f\n" % (i*dt, PEnergy + KEnergy, PEnergy, KEnergy), file=f)
                         
         #update the 3D visualization
         if UseVisual:
@@ -200,10 +200,10 @@ def RunTest():
     #do one last update of the display         
     if UseVisual:
         atomvis.Update(Pos, L, Force = True)
-    print "%d  %11.4f  %11.4f  %11.4f" % (i, PEnergy + KEnergy, PEnergy, KEnergy)
+    print("%d  %11.4f  %11.4f  %11.4f" % (i, PEnergy + KEnergy, PEnergy, KEnergy))
 
     StopTime = time.time()
-    print "Total time: %.1f s" % (StopTime - StartTime)
+    print("Total time: %.1f s" % (StopTime - StartTime))
 
 
 #check to see if we were run at the command line

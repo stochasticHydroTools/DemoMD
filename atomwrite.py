@@ -24,7 +24,7 @@ Input:
     N = len(Pos)
     #make a new AtomNames the same length as the position array
     #by repeating it over and over
-    AtomNames = AtomNames * (N / len(AtomNames) + 1)
+    AtomNames = AtomNames * (round(N / len(AtomNames)) + 1)
     AtomNames = AtomNames[:N]        
     #minimum image the positions
     if not L is None:
@@ -108,7 +108,7 @@ Input:
             self.fobj = gzip.GzipFile(self.FileName, "w")
         else:
             self.FileName = FileName
-            self.fobj = file(self.FileName, "w")
+            self.fobj = open(self.FileName, "w")
 
     def write(self, Pos):
         """Writes positions to a Pdb file.
