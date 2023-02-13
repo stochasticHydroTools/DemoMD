@@ -8,8 +8,10 @@ import time
 #import pdb writing
 import atomwrite
 
+#=======================================    
 # Some user options, see routine RunTest below for more
-# whether or not to save the trajectory as a PdbFile to render in chimerax
+
+# whether or not to save the trajectory as a PdbFile to render in chimera(x)
 SaveTrajectory = True
 
 # distance cutoff for pairwise Lenard-Jones interactions
@@ -19,8 +21,14 @@ Cut = 3.0
 # a phase transition to a drop of something glassy (False)
 Liquid = False
 
+#whether or not to use the 3d visualization
+UseVisual = False # This requires vpython and I could not get it to work
+if UseVisual:
+    #import custom visualization library
+    import atomvis
+
 # How do we call Fortran from python?
-UseF2PY = True # Use f2py/f2py3 or ISO_C_BINDING+ctypes
+UseF2PY = False # Use f2py/f2py3 or ISO_C_BINDING+ctypes
 if UseF2PY:
     #import compiled Fortran library
     import ljlib
@@ -38,13 +46,7 @@ else:
     # double L, double rc, double dt, double *Kenergy, double *Penergy)
     VV.argtypes = [ct.POINTER(ct.c_double), ct.POINTER(ct.c_double), ct.POINTER(ct.c_double), ct.c_double, ct.c_double, ct.c_double, ct.POINTER(ct.c_double), ct.POINTER(ct.c_double)] 
    
-   
-#whether or not to use the 3d visualization
-UseVisual = False # This requires vpython and I could not get it to work
-if UseVisual:
-    #import custom visualization library
-    import atomvis
-    
+#=======================================    
 
 #NOTE:
 #everything below assumes unit atomic masses,

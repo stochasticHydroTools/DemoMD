@@ -1,5 +1,5 @@
 f2py3 -c -m ljlib ljlib.f90
-gfortran --shared ljlib_new.f90 -o ljlib_new.so
+gfortran -fPIC --shared ljlib_new.f90 -o ljlib_new.so
 
 python3 mddemo.py
 
