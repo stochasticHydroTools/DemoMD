@@ -1,4 +1,6 @@
-
+! These are original codes not modified by A. Donev
+! They are meant to be used with f2py or f2py3
+! See ljlib_new.f90 for a modernized version
 
 subroutine EnergyForces(Pos, L, rc, PEnergy, Forces, Dim, NAtom)
     implicit none
@@ -39,7 +41,7 @@ subroutine EnergyForces(Pos, L, rc, PEnergy, Forces, Dim, NAtom)
 end subroutine
 
 
-subroutine VVIntegrate(Pos, Vel, Accel, L, CutSq, dt, KEnergy, PEnergy, Dim, NAtom)
+subroutine VVIntegrate(Pos, Vel, Accel, L, rc, dt, KEnergy, PEnergy, Dim, NAtom)
     implicit none
     integer, intent(in) :: Dim, NAtom
     real(8), intent(in) :: L, CutSq, dt
@@ -49,7 +51,7 @@ subroutine VVIntegrate(Pos, Vel, Accel, L, CutSq, dt, KEnergy, PEnergy, Dim, NAt
     external :: EnergyForces
     Pos = Pos + dt * Vel + 0.5 * dt*dt * Accel
     Vel = Vel + 0.5 * dt * Accel
-    call EnergyForces(Pos, L, CutSq, PEnergy, Accel, Dim, NAtom)
+    call EnergyForces(Pos, L, rc, PEnergy, Accel, Dim, NAtom)
     Vel = Vel + 0.5 * dt * Accel
     KEnergy = 0.5 * sum(Vel*Vel)
 end subroutine

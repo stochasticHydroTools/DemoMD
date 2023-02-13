@@ -5,7 +5,7 @@
 #Requires the VPython module (version >= 5.0).
 
 
-import visual as v
+import vpython as v # A. Donev changed from old visual package to vpython
 import numpy as np
 import time
 

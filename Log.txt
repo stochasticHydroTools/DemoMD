@@ -1,0 +1,12 @@
+f2py3 -c -m ljlib ljlib.f90
+gfortran --shared ljlib_new.f90 -o ljlib_new.so
+
+python3 mddemo.py
+
+# Plot trajectory of an atom
+xmgrace -block position_first.dat -bxy 2:3  -block position_last.dat -bxy 2:3
+
+# Plot initial and final configuration
+xmgrace -block position_initial.dat -bxy 2:3  -block position_final.dat -bxy 2:3
+xmgrace -block position_final.dat -bxy 2:3
+
