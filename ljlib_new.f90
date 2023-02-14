@@ -83,13 +83,13 @@ subroutine VVIntegrate(Pos, Vel, Accel, L, CutSq, dt, KEnergy, PEnergy, Dim, NAt
     real(wp), intent(out) :: KEnergy, PEnergy
     
     ! Positional Verlet integrator:
-    Pos = Pos + dt * Vel + 0.5 * dt*dt * Accel ! 2nd order Taylor for positions
+    Pos = Pos + dt * Vel + 0.5_wp * dt*dt * Accel ! 2nd order Taylor for positions
     ! Explicit trapezoidal method for velocity:
-    Vel = Vel + 0.5 * dt * Accel ! First half velocity update
+    Vel = Vel + 0.5_wp * dt * Accel ! First half velocity update
     ! mass=1, so acceleration=force
     call EnergyForces(Pos, L, CutSq, PEnergy, Accel, Dim, NAtom) ! Expensive call to force field
-    Vel = Vel + 0.5 * dt * Accel ! Second half velocity update
-    KEnergy = 0.5 * sum(Vel*Vel)
+    Vel = Vel + 0.5_wp * dt * Accel ! Second half velocity update
+    KEnergy = 0.5_wp * sum(Vel*Vel)
 end subroutine
 
 end module LJlib
