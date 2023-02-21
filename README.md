@@ -14,13 +14,18 @@ and then run with _python3 mddemo.py_. In _ljlib_new.f90_ I modernized the Fortr
 At present direct (runtime) visualization is broken. The original code used the visual package in python2, which has now become VPython in python3 (_pip3 install --user vpython_). I could not get it to work; **if someone gets visualization to work please let me know**. The code will write _animnew.pdb_ which contains samples from the trajectory and can be opened with [chimerax](https://www.cgl.ucsf.edu/chimerax/). There is a demo movie in _Movies/DemoMD.mp4_; here are instructions on how to make a movie using _chimerax_ commands:
 
 Select the framerate both here and the last command:
+
 open animnew.pdb coordset true
+
 graphics rate maxFrameRate 2
+
 movie record format png
 
 To start playing and recording the movie:
+
 coordset #1; movie record
 
 To save the movie up to the current frame:
+
 movie encode framerate 2 quality higher output Movies/DemoMD.mp4
 
