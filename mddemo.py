@@ -164,7 +164,7 @@ def RunTest():
        dt = 0.01 # timestep 0.001-0.01
 
     #set the init box width, number of particles, temperature, and timestep
-    N = 125 # number of atoms = 5^3
+    N = 125 #=5^3 # 512 #=8^3 # # number of atoms, cube of integer
     L = (N / rho)**(1./3.) # periodic box size
     
     print("packing density = %11.6g" % (N*(4/3*3.14159)/L**3))
@@ -178,7 +178,7 @@ def RunTest():
     #RescaleSteps = 1000 # Never rescale if <=0
     RescaleSteps = 100 # Never rescale if <=0
     #set the frequency in md steps to write coordinates to a file for visualization
-    WriteConfSteps = 100 # Never if <=0
+    WriteConfSteps = 10 # Never if <=0
 
     #set the random number seed; useful for debugging
     np.random.seed = 342324
