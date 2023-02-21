@@ -15,17 +15,17 @@ At present direct (runtime) visualization is broken. The original code used the 
 
 Select the framerate both here and the last command:
 
-open animnew.pdb coordset true
+_open animnew.pdb coordset true_
 
-graphics rate maxFrameRate 2
+_graphics rate maxFrameRate 2_
 
-movie record format png
+_movie record format png_
 
 To start playing and recording the movie:
 
-coordset #1; movie record
+_coordset #1; movie record_
 
 To save the movie up to the current frame:
 
-movie encode framerate 2 quality higher output Movies/DemoMD.mp4
+_movie encode framerate 2 quality higher output Movies/DemoMD.mp4_
 
