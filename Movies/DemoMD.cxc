@@ -1,0 +1,9 @@
+# Make a movie of the MD simulation using ChimeraX
+open ../animnew.pdb coordset true
+graphics rate maxFrameRate 10
+movie record directory . format png
+# Start playing and recording the movie, up to frame 500:
+coordset #1; wait 500
+# This will save the movie up to the current frame:
+# (don't overwrite the sample DemoMD.mp4)
+movie encode framerate 10 quality higher output DemoMD.mp4

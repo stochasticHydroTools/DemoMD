@@ -64,7 +64,8 @@ Output:
     #make the position array
     Pos = np.zeros((N,3), float)
     #compute integer grid # of locations for cubic lattice
-    NLat = int(N**(1./3.) + 1.)
+    NLat = round(N**(1./3.))
+    print("Initializing a cubic lattice of ", NLat, "^3 atoms")
     #make an array of lattice sites
     r = L * (np.arange(NLat, dtype=float)/NLat - 0.5)
     
@@ -152,6 +153,7 @@ Output:
 
 def RunTest():
 
+    #set density, initial temperature, target temperature, and time step size
     if Liquid: # Liquid
        rho = 0.05 # density -- liquid
        InitTemp = 1.0 # Initial temperature
@@ -162,15 +164,19 @@ def RunTest():
        InitTemp = 0.0 # Initial temperature
        Temp = 0.1 # Target temperature
        dt = 0.01 # timestep 0.001-0.01
-
-    #set the init box width, number of particles, temperature, and timestep
-    N = 125 #=5^3 # 512 #=8^3 # # number of atoms, cube of integer
-    L = (N / rho)**(1./3.) # periodic box size
     
+    #set number of particles, cube of integer
+    #also set the max number of md steps; 0 for infinite loop    
+    if True: # Do a faster demo
+        N = 125 #=5^3
+        MaxSteps = 1000
+    else: # Do a bigger system
+        N = 512 #=8^3
+        MaxSteps = 5000      
+        
+    L = (N / rho)**(1./3.) # periodic box size    
     print("packing density = %11.6g" % (N*(4/3*3.14159)/L**3))
  
-    #set the max number of md steps; 0 for infinite loop
-    MaxSteps = 10000
 
     # Set the frequency in md steps to write statistics to file
     WriteStatsSteps=10
